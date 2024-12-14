@@ -12,8 +12,9 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'modules' => [
-        'rule' => [
+        'user' => [
             'class' => 'app\modules\user\Module.php'
+            'enableAutoLogin' => true,
         ]
     ],
     'components' => [
