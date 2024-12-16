@@ -7,7 +7,6 @@ use yii\widgets\ActiveForm;
 /* @var $model app\modules\user\models\User */
 
 $this->title = 'Авторизуйтесь';
-$this->params['breadcrumbs'][] = 'Авторизация';
 
 ?>
 

@@ -16,6 +16,9 @@ $config = [
         'user' => [
             'class' => 'app\modules\user\Module',
         ],
+        'rule' => [
+            'class' => 'app\modules\rule\Module'
+        ],
     ],
     'components' => [
         'request' => [
