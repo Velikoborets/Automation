@@ -1,9 +1,11 @@
 <?php
 
+namespace app\modules\user\migrations;
+
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%users}}`.
+ * Handles the creation of table `{{%customer}}`.
  */
 class m241213_164810_create_users_table extends Migration
 {

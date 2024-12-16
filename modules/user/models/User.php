@@ -1,16 +1,16 @@
 <?php
 
-namespace app\models;
+namespace app\modules\user\models;
 
-use Yii;
+use yii\web\IdentityInterface;
 
 /**
- * This is the model class for table "users".
+ * This is the model class for table "customer".
  *
  * @property int $id
  * @property string $username
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -44,7 +44,7 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
-     * Finds user object by the given ID.
+     * Finds customer object by the given ID.
      *
      * @param int|string $id
      * @return User|null object by id
@@ -55,9 +55,9 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
-     * Returns the unique ID of the user.
+     * Returns the unique ID of the customer.
      *
-     * @return int|string еhe unique identifier of the user.
+     * @return int|string еhe unique identifier of the customer.
      */
     public function getId()
     {
@@ -75,7 +75,7 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
-     * Validates the given authentication key.
+     * Validates the given auth key
      *
      * @param  string $authKey for validation
      * @return bool (valid auth key or not)
@@ -83,5 +83,17 @@ class User extends \yii\db\ActiveRecord
     public function validateAuthKey($authKey)
     {
         return true;
+    }
+
+    /**
+     * Finds a user by access token.
+     *
+     * @param string $token
+     * @param mixed $type
+     * @return object|null The user identity if found, or null if not found.
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return null;
     }
 }

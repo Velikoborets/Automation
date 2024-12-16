@@ -2,6 +2,7 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$routes = require __DIR__ . '/routes.php';
 
 $config = [
     'id' => 'basic',
@@ -13,9 +14,8 @@ $config = [
     ],
     'modules' => [
         'user' => [
-            'class' => 'app\modules\user\Module.php'
-            'enableAutoLogin' => true,
-        ]
+            'class' => 'app\modules\user\Module',
+        ],
     ],
     'components' => [
         'request' => [
@@ -26,7 +26,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\modules\user\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -48,14 +48,11 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => $routes,
         ],
-        */
     ],
     'params' => $params,
 ];
