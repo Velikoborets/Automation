@@ -9,4 +9,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <h2><?= Html::encode($this->title) ?></h2>
 
-<?= Html::a('Авторизоваться', ['/login'], ['class' => 'btn btn-success']);
+<?= Html::a('Авторизоваться', ['/login'], ['class' => 'btn btn-success']); ?>

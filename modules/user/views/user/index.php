@@ -10,4 +10,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <h2><?= Html::encode($this->title) ?></h2>
 
-<?= Html::a('Управление правилами', ['/rules'], ['class' => 'btn btn-success']) ?>
+<?= Html::a('Управление правилами', ['/rule/rule/index'], ['class' => 'btn btn-success']) ?>
