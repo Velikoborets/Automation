@@ -13,33 +13,31 @@ $this->params['breadcrumbs'][] = ['label' => 'Автоматизация', 'url'
 
 <h2>Управление правилами</h2>
 
-<?=Html::a('Создать правило', 'create', ['class' => 'btn btn-primary']) ?>
+<?= Html::a('Создать правило', ['create'], ['class' => 'btn btn-primary']) ?>
 
-<?= GridView::widget ([
-    'dataProvider' => new ActiveDataProvider ([
-        'query' => Rule::find()
+<?= GridView::widget([
+    'dataProvider' => new ActiveDataProvider([
+        'query' => Rule::find(),
+        'pagination' => [
+            'pageSize' => 10,
+        ],
     ]),
-
-    'columns' =>
-    [
+    'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
         'name',
-        'conditions',
         [
             'header' => '<div style="text-align: center;">Действия</div>',
-            'class' => ActionColumn::className(),
+            'class' => ActionColumn::class,
             'template' => '{linkTG} &nbsp {result} &nbsp {update} &nbsp {delete}',
             'buttons' => [
                 'result' => function ($url, $model) {
-                    return Html::a('Результат Анализа', ['result', 'id' => $model->id],
-                    ['class' => 'btn btn-danger']);
+                    return Html::a('Результат Анализа', ['result', 'id' => $model->id], ['class' => 'btn btn-danger table-actions']);
                 },
                 'linkTG' => function ($url, $model) {
-                    return Html::a('Отправить в tg', ['linkTG', 'id' => $model->id],
-                    ['class' => 'btn btn-primary']);
+                    return Html::a('Отправить в tg', ['linkTG', 'id' => $model->id], ['class' => 'btn btn-primary table-actions']);
                 }
-            ]
+            ],
+            'contentOptions' => ['class' => 'table-cell'],
         ]
-    ]
-
+    ],
 ]) ?>

@@ -16,8 +16,8 @@ class m241218_121352_create_rules_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'name' => $this->string('255')->notNull(),
-            'conditions' => $this->json()->notNull(),
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
+            'updated_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
         ]);
 
         $this->createIndex(

@@ -10,8 +10,9 @@ use app\modules\user\models\User;
  *
  * @property int $id
  * @property int $user_id
- * @property string $conditions
  * @property string $name
+ * @property string $created_at
+ * @property string $updated_at
  *
  * @property User $user
  */
@@ -31,13 +32,13 @@ class Rule extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['user_id', 'name', 'conditions'], 'required'],
+            [['user_id', 'name'], 'required'],
             [['user_id'], 'integer'],
-            [['conditions'], 'string'],
-            [['created_at'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
+            [['name'], 'unique', 'message' => 'Правило с таким именем уже существует.'],
 
-            // проверяет существ. ли user с указ. id  в табл. "users"
+            // проверяет существ. ли user с указ. id в табл. "users"
             [
                 ['user_id'],
                 'exist',
@@ -53,11 +54,12 @@ class Rule extends ActiveRecord
      */
     public function attributeLabels(): array
     {
-        return  [
+        return [
             'id' => 'ID',
             'user_id' => 'User ID',
-            'name' => 'Name',
-            'conditions' => 'Conditions',
+            'name' => 'Rule Name',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
 
@@ -68,5 +70,19 @@ class Rule extends ActiveRecord
     public function getUser(): \yii\db\ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+        ];
     }
 }
