@@ -17,27 +17,4 @@ class RuleForm extends Model
             [['conditions'], 'safe'],
         ];
     }
-
-/* Для вывода сущностей в представлении Yii\Widget (пока не надо)
-    public function getEssences(): array
-    {
-        return [
-            'clicks' => 'Clicks',
-            'leads' => 'Leads',
-            'profit' => 'Profit',
-            'roi' => 'ROI',
-        ];
-    }
-
-    public function getOperators(): array
-    {
-        return [
-            '>' => '>',
-            '<' => '<',
-            '=' => '=',
-            '=>' => '=>',
-            '<=' => '<=',
-        ];
-    }
-*/
 }

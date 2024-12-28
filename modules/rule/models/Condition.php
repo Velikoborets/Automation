@@ -7,17 +7,16 @@ use yii\db\BaseActiveRecord;
 
 class Condition extends ActiveRecord
 {
-    // Операторы
-    public const LESS_THAN = 0; // <
-    public const MORE_THAN = 1; // >
-    public const LESS_THAN_OR_EQUAL = 2; // <=
-    public const MORE_THAN_OR_EQUAL = 3; // >=
-    public const EQUAL = 4; // =
+    public const LESS_THAN = 0;
+    public const MORE_THAN = 1;
+    public const LESS_THAN_OR_EQUAL = 2;
+    public const MORE_THAN_OR_EQUAL = 3;
+    public const EQUAL = 4;
 
-    // Поля
     public const ROI = 0;
     public const COST = 1;
     public const REVENUE = 2;
+
     public const APR = 3;
 
     public static function tableName()

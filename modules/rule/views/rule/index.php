@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Автоматизация', 'url'
     'dataProvider' => new ActiveDataProvider([
         'query' => Rule::find(),
         'pagination' => [
-            'pageSize' => 10,
+            'pageSize' => 5,
         ],
     ]),
     'columns' => [
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Автоматизация', 'url'
         [
             'header' => '<div style="text-align: center;">Действия</div>',
             'class' => ActionColumn::class,
-            'template' => '{linkTG} &nbsp {result} &nbsp {update} &nbsp {delete}',
+            'template' => '{linkTG} &nbsp {result} &nbsp {update} &nbsp {view} &nbsp {delete} ',
             'buttons' => [
                 'result' => function ($url, $model) {
                     return Html::a('Результат Анализа', ['result', 'id' => $model->id], ['class' => 'btn btn-danger table-actions']);

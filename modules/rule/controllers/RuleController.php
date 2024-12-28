@@ -27,7 +27,7 @@ class RuleController extends Controller
     }
 
     /**
-     * @throws Exception
+     *
      */
     public function actionCreate()
     {
@@ -35,9 +35,6 @@ class RuleController extends Controller
 
         if (Yii::$app->request->isPost) {
             $data = Yii::$app->request->post();
-
-            // Отладка: вывод данных
-            Yii::debug('POST data: ' . print_r($data, true));
 
             $rule = new Rule();
             $rule->name = $data['name'];
@@ -52,11 +49,13 @@ class RuleController extends Controller
                         $condition->operator = $conditionData['operator'];
                         $condition->value = $conditionData['value'];
 
-                        // Валидируем условие перед сохранением
+                        // Валидируем условие перед сохранением и если всё ок - сохраняем в Б/Д
                         if (!$condition->validate()) {
                             $transaction->rollBack();
                             Yii::$app->session->setFlash('error', 'Не удалось сохранить условие. Ошибки: ' . implode(', ', $condition->getFirstErrors()));
                             return $this->redirect(['create']);
+                        } else {
+                            $condition->save();
                         }
                     }
                 }
@@ -73,7 +72,6 @@ class RuleController extends Controller
 
         return $this->render('create');
     }
-
 
     /**
      * @throws \Throwable
